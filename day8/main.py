@@ -5,7 +5,6 @@ user_complete_option = "Enter the Todo number That you want to mark as complete 
 
 
 def add_todo(new_todo):
-
     with open('files/todos.txt', 'r') as file:
         todo_list = file.readlines()
 
@@ -35,7 +34,6 @@ def edit_todo(todo_edit):
 
 
 def show_todo():
-
     with open('files/todos.txt', 'r') as file:
         todo_list = file.readlines()
 
@@ -43,14 +41,14 @@ def show_todo():
         print(f"{index + 1}. {item.strip("\n")}")
 
 
-def complete_todo(user_choice):
+def complete_todo(complete_choice):
     print("Existing Todo:")
     show_todo()
 
     with open("files/todos.txt", "r") as file:
         todo_list = file.readlines()
 
-    todo_complete_index = int(user_choice[9:])
+    todo_complete_index = int(complete_choice[9:])
 
     if todo_complete_index < 0 or todo_complete_index > len(todo_list):
         print("You have entered an invalid index")
