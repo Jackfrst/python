@@ -4,22 +4,28 @@ user_edit_option = "Enter the Todo number That you want to edit :"
 user_complete_option = "Enter the Todo number That you want to mark as complete :"
 
 
-def add_todo(new_todo):
+def get_todo():
     with open('files/todos.txt', 'r') as file:
-        todo_list = file.readlines()
+        todo = file.readlines()
+    return todo
 
-    todo_list.append((new_todo[4:] + "\n").capitalize())
 
+def set_todo(todo_list):
     with open('files/todos.txt', 'w') as file:
         file.writelines(todo_list)
+
+
+def add_todo(new_todo):
+    todo_list = get_todo()
+    todo_list.append((new_todo[4:] + "\n").capitalize())
+    set_todo(todo_list)
 
 
 def edit_todo(todo_edit):
     print("Existing Todo:")
     show_todo()
 
-    with open('files/todos.txt', 'r') as file:
-        todo_list = file.readlines()
+    todo_list = get_todo()
 
     todo_edit_index = int(todo_edit[5:])
 
@@ -27,15 +33,13 @@ def edit_todo(todo_edit):
         print("You have entered an invalid index")
     else:
         todo_list[todo_edit_index - 1] = input(user_prompt).capitalize() + "\n"
-        with open('files/todos.txt', 'w') as file:
-            file.writelines(todo_list)
+        set_todo(todo_list)
         print("New Todo:")
         show_todo()
 
 
 def show_todo():
-    with open('files/todos.txt', 'r') as file:
-        todo_list = file.readlines()
+    todo_list = get_todo()
 
     for index, item in enumerate(todo_list):
         print(f"{index + 1}. {item.strip("\n")}")
@@ -45,8 +49,7 @@ def complete_todo(complete_choice):
     print("Existing Todo:")
     show_todo()
 
-    with open("files/todos.txt", "r") as file:
-        todo_list = file.readlines()
+    todo_list = get_todo()
 
     todo_complete_index = int(complete_choice[9:])
 
@@ -55,8 +58,7 @@ def complete_todo(complete_choice):
     else:
         todo_to_remove = todo_list[todo_complete_index - 1].strip('\n')
         todo_list.pop(todo_complete_index - 1)
-        with open("files/todos.txt", "w") as file:
-            file.writelines(todo_list)
+        set_todo(todo_list)
 
         print(f"--> {todo_to_remove} is removed from the list")
         print("New Todo:")
