@@ -4,8 +4,8 @@ user_edit_option = "Enter the Todo number That you want to edit :"
 user_complete_option = "Enter the Todo number That you want to mark as complete :"
 
 
-def get_todo():
-    with open('files/todos.txt', 'r') as file:
+def get_todo(filepath):
+    with open(filepath, 'r') as file:
         todo = file.readlines()
     return todo
 
@@ -16,7 +16,7 @@ def set_todo(todo_list):
 
 
 def add_todo(new_todo):
-    todo_list = get_todo()
+    todo_list = get_todo('files/todos.txt')
     todo_list.append((new_todo[4:] + "\n").capitalize())
     set_todo(todo_list)
 
@@ -25,7 +25,7 @@ def edit_todo(todo_edit):
     print("Existing Todo:")
     show_todo()
 
-    todo_list = get_todo()
+    todo_list = get_todo('files/todos.txt')
 
     todo_edit_index = int(todo_edit[5:])
 
@@ -39,7 +39,7 @@ def edit_todo(todo_edit):
 
 
 def show_todo():
-    todo_list = get_todo()
+    todo_list = get_todo('files/todos.txt')
 
     for index, item in enumerate(todo_list):
         print(f"{index + 1}. {item.strip("\n")}")
@@ -49,7 +49,7 @@ def complete_todo(complete_choice):
     print("Existing Todo:")
     show_todo()
 
-    todo_list = get_todo()
+    todo_list = get_todo('files/todos.txt')
 
     todo_complete_index = int(complete_choice[9:])
 
