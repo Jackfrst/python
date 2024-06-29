@@ -11,10 +11,13 @@ window = sg.Window('My To-do App',
 while True:
     event, values = window.read()
     print(values["todo"])
+    todo = values["todo"].lower().strip()
+    """IT Strip 1st 4 latter"""
     match event:
         case "Add":
-            tm.add_todo(values["todo"])
-
+            tm.add_todo(todo)
+        case sg.WINDOW_CLOSED:
+            break
 
 window.close()
 
