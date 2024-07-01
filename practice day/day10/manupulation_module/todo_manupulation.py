@@ -3,7 +3,8 @@ from manupulation_module import file_manupulation as fm
 
 def add_todo(new_todo):
     todo_list = fm.get_todo('files/todos.txt')
-    todo_list.append((new_todo[4:] + "\n").capitalize())
+    # todo_list.append((new_todo[4:] + "\n").capitalize())
+    todo_list.append((new_todo + "\n").capitalize())
     fm.set_todo('files/todos.txt', todo_list)
 
 

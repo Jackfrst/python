@@ -18,14 +18,29 @@ window = sg.Window('My To-do App',
 
 while True:
     event, values = window.read()
-    print(values["todo"])
-    todo = values["todo"].lower().strip()
+    print(event)
+    print(values)
+    # todo = values["todo"].lower().strip()
     """IT Strip 1st 4 latter"""
     match event:
         case "Add":
-            tm.add_todo(todo)
+            todos = fm.get_todo('files/todos.txt')
+            new_todo = values['todo'] + '\n'
+            todos.append(new_todo)
+            fm.set_todo('files/todos.txt', todos)
+            window['todos'].update(values=todos)
+
+        case "Edit":
+            todo_to_edit = values["todos"][0]
+            new_todo = values['todo']
+            todos = fm.get_todo('files/todos.txt')
+            index = todos.index(todo_to_edit)
+            todos[index] = new_todo
+            fm.set_todo('files/todos.txt', todos)
+            window['todos'].update(values=todos)
+        case 'todos':
+            window['todo'].update(value=values['todos'][0])
         case sg.WINDOW_CLOSED:
             break
 
 window.close()
-
