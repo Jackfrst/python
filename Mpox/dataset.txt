@@ -1,0 +1,7 @@
+https://github.com/mahsan2/Monkeypox-dataset-2022
+
+https://www.cdc.gov/chickenpox/signs-symptoms/photos.html?CDC_AAref_Val=https://www.cdc.gov/chickenpox/about/photos.html
+
+https://www.kaggle.com/datasets/nafin59/monkeypox-skin-lesion-dataset
+
+https://github.com/ShamsNafisaAli/Monkeypox-Skin-Lesion-Dataset-v2
